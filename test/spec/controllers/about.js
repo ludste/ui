@@ -5,13 +5,13 @@ describe('Controller: AboutController', function () {
   // load the controller's module
   beforeEach(module('uiApp'));
 
-  var AboutController,
+  var aboutController,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AboutController = $controller('AboutController', {
+    aboutController = $controller('AboutController', {
       $scope: scope
     });
   }));

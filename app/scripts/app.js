@@ -16,13 +16,18 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiApp.controllers'
+    'uiApp.controllers',
+    'uiApp.services'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/newIdea', {
+        templateUrl: 'views/newIdea.html',
+        controller: 'IdeaController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
