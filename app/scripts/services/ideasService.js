@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('uiApp')
-  .factory('Ideas', ['$rootScope', function ($rootScope) {
+  .service('Ideas', ['$rootScope', function ($rootScope) {
     var service = {
       ideas: [
         {

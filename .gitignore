@@ -5,3 +5,5 @@ dist
 bower_components
 .idea
 ui.iml
+
+.idea/watcherTasks.xml
