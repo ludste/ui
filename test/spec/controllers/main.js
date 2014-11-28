@@ -16,8 +16,4 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-
-  it('Should work', function () {
-    spyOn()
-  });
 });

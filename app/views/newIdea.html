@@ -1,15 +1,56 @@
 <div>
-
-
-  <form role="form">
+  <form name='newIdeaForm' role="form">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Enter idea name">
+      <input class="form-control" type="text" id="name" placeholder="Enter idea name" ng-model="newIdea.name">
     </div>
     <div class="form-group">
       <label for="desctiprion">Description</label>
-      <textarea type="text" id="desctiprion" placeholder="Enter idea description"></textarea>
+      <textarea class="form-control" id="desctiprion" placeholder="Enter idea description"
+                ng-model="newIdea.description"></textarea>
     </div>
-
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" type="email" id="email" placeholder="Enter email for the entrepreneur"
+             ng-model="newIdea.email">
+    </div>
+    <div class="form-group">
+      <label for="owner">Name</label>
+      <input class="form-control" type="text" id="owner" placeholder="Enter name for the entrepreneur"
+             ng-model="newIdea.owner">
+    </div>
+    <div class="form-group">
+      <label for="key_words">Description</label>
+      <textarea class="form-control" id="key_words" placeholder="Enter kewords_ description"
+                ng-model="newIdea.keyWords"></textarea>
+    </div>
+    <!--
+        <button ng-click="addNewIdea(newIdeaForm)" class="btn btn-default">
+          Add
+        </button>
+    -->
+    <button ng-click="
+    addNewIdea(newIdea.name
+    , newIdea.description
+    , newIdea.email
+    , newIdea.owner
+    , newIdea.keyWords
+    )" class="btn btn-default">
+      Add
+    </button>
   </form>
+</div>
+<div>
+  <dl class="dl-horizontal" ng-repeat="idea in ideas">
+    <dt>Name</dt>
+    <dd>{{idea.name}}</dd>
+    <dt>Description</dt>
+    <dd>{{idea.description}}</dd>
+    <dt>Email</dt>
+    <dd>{{idea.email}}</dd>
+    <dt>Owner</dt>
+    <dd>{{idea.owner}}</dd>
+    <dt>Keywords</dt>
+    <dd>{{idea.keyWords}}</dd>
+  </dl>
 </div>

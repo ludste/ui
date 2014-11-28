@@ -7,11 +7,12 @@
  * # MainCtrl
  * Controller of the uiApp
  */
-angular.module('uiApp.controllers', [])
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('uiApp')
+  .controller('MainController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
+    $scope.$on('ideas.update', function () {
+      $log.info('here');
+      $scope.ideas = Ideas.ideas;
+    });
+    $scope.newIdeas = Ideas.ideas;
+
+  }]);

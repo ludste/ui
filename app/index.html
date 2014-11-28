@@ -25,7 +25,6 @@
   <div ng-include="'views/header.html'"></div>
 
   <div ng-view=""></div>
-
   <div class="footer">
     <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
   </div>
@@ -83,12 +82,13 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/services/ideaFactory.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/services/ideasService.js"></script>
 <script src="scripts/controllers/mainController.js"></script>
 <script src="scripts/controllers/ideaController.js"></script>
 <script src="scripts/controllers/aboutController.js"></script>
 <script src="scripts/controllers/contactController.js"></script>
-<script src="scripts/app.js"></script>
+<script src="scripts/controllers/sessionController.js"></script>
 <!-- endbuild -->
 </body>
 </html>

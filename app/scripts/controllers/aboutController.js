@@ -7,7 +7,7 @@
  * # AboutController
  * Controller of the uiApp
  */
-angular.module('uiApp.controllers')
+angular.module('uiApp')
   .controller('AboutController', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

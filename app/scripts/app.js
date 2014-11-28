@@ -16,18 +16,16 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiApp.controllers',
-    'uiApp.services'
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .when('/newIdea', {
         templateUrl: 'views/newIdea.html',
         controller: 'IdeaController'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'SessionController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -37,7 +35,11 @@ angular
         templateUrl: 'views/contact.html',
         controller: 'ContactController'
       })
+      .when('/ideas', {
+        templateUrl: 'views/list_idea.html',
+        controller: 'MainController'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/ideas'
       });
   });

@@ -10,7 +10,7 @@
  * # ContactController
  * Controller of the uiApp
  */
-angular.module('uiApp.controllers')
-  .controller('ContactController', function ($scope) {
+angular.module('uiApp')
+  .controller('ContactController', function () {
 
   });
