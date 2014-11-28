@@ -3,7 +3,7 @@ dist
 .tmp
 .sass-cache
 bower_components
-.idea
+.idea/*
 ui.iml
-
+.idea/watcherTasks.xml
 .idea/watcherTasks.xml
