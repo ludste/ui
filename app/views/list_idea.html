@@ -1,15 +1,17 @@
 <div>
-  <dl class="dl-horizontal" ng-repeat="idea in newIdeas">
-    <dt>Name</dt>
-    <dd>{{idea.name}}</dd>
-    <dt>Description</dt>
-    <dd>{{idea.description}}</dd>
-    <dt>Email</dt>
-    <dd>{{idea.email}}</dd>
-    <dt>Owner</dt>
-    <dd>{{idea.owner}}</dd>
-    <dt>Keywords</dt>
-    <dd>{{idea.keyWords}}</dd>
-  </dl>
+  <ul class="media-list">
+    <li class="media" ng-repeat="idea in newIdeas">
+      <div class="media-left">
+        <p>{{idea.id}}</p>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{idea.name}}</h4>
 
+        <p>Here will be the decription of the idea that we will create in our project. They might be long, or short, or
+          a little bit of both.{{idea.description}}</p>
+      </div>
+    </li>
+  </ul>
 </div>
+
+

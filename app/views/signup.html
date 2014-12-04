@@ -1,0 +1,36 @@
+<div id="signup">
+  <form role="form" id="signupForm">
+    <div class="form-group">
+      <label for="name">First name</label>
+      <input type="text" class="form-control" ng-model="signupData.name" id="name"
+             placeholder="Enter your first name">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last name</label>
+      <input type="text" class="form-control" ng-model="signupData.lastname" id="lastname"
+             placeholder="Enter your last name">
+    </div>
+    <div class="form-group">
+      <label for="email">Eamil</label>
+      <input type="text" class="form-control" ng-model="signupData.email" id="email"
+             placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" ng-model="signupData.password" id="password"
+             placeholder="Enter a password between 3 and 20 characters long">
+    </div>
+    <div class="form-group">
+      <label for="passwordRepeat">Repeat password</label>
+      <input type="password" class="form-control" ng-model="signupData.passwordRepeat" id="passwordRepeat"
+             placeholder="Enter your password again">
+    </div>
+    <div ng-show="$passwordError" class="alert alert-danger" role="alert">
+      <p> Try again, password don't match or are to long/shot </p>
+    </div>
+    <button ng-click="signup()"
+            class="btn btn-default">
+      Sign up
+    </button>
+  </form>
+</div>

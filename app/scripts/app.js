@@ -16,8 +16,54 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-  ])
-  .config(function ($routeProvider) {
+    'sessionService'
+  ]).config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    $httpProvider.interceptors.push(['$location', '$rootScope', '$q', function ($location, $rootScope, $q) {
+      return {
+        /*      // optional method
+         'request': function (config) {
+         // do something on success
+         alert('test');
+         return config;
+         },
+         */
+        /*
+         // optional method
+         'requestError': function (rejection) {
+         // do something on error
+         if (canRecover(rejection)) {
+         return responseOrNewPromise;
+         }
+         return $q.reject(rejection);
+         },
+         */
+        /*
+         // optional method
+         'response': function (response) {
+         // do something on success
+         return response;
+         },
+         */
+
+        // optional method
+        'responseError': function (rejection) {
+          // do something on error
+          if (rejection.status === 401) {
+            $rootScope.$broadcast('event:unauthorized');
+            $location.path('/users/login');
+            return rejection;
+          }
+          return $q.reject(rejection);
+        }
+      };
+    }]);
+  }])
+/** Turn on/off the angular debugging; should be off when deployed */
+  .config(['$logProvider', function ($logProvider) {
+    $logProvider.debugEnabled(true);
+  }])
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/newIdea', {
         templateUrl: 'views/newIdea.html',
@@ -25,7 +71,15 @@ angular
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'SessionController'
+        controller: 'LoginController'
+      })
+      .when('/logout', {
+        templateUrl: 'views/login.html',
+        controller: 'LogoutController'
+      })
+      .when('/signup', {
+        templateUrl: 'views/login.html',
+        controller: 'SignupController'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -39,7 +93,11 @@ angular
         templateUrl: 'views/list_idea.html',
         controller: 'MainController'
       })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'SignupController'
+      })
       .otherwise({
         redirectTo: '/ideas'
       });
-  });
+  }]);

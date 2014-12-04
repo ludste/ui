@@ -15,14 +15,14 @@
              ng-model="newIdea.email">
     </div>
     <div class="form-group">
-      <label for="owner">Name</label>
+      <label for="owner">Owner</label>
       <input class="form-control" type="text" id="owner" placeholder="Enter name for the entrepreneur"
              ng-model="newIdea.owner">
     </div>
     <div class="form-group">
-      <label for="key_words">Description</label>
-      <textarea class="form-control" id="key_words" placeholder="Enter kewords_ description"
-                ng-model="newIdea.keyWords"></textarea>
+      <label for="key_words">Keywords</label>
+      <textarea class="form-control" id="key_words" placeholder="Enter keywords"
+                ng-model="newIdea.keywords"></textarea>
     </div>
     <!--
         <button ng-click="addNewIdea(newIdeaForm)" class="btn btn-default">
@@ -43,7 +43,7 @@
 <div>
   <dl class="dl-horizontal" ng-repeat="idea in ideas">
     <dt>Name</dt>
-    <dd>{{idea.name}}</dd>
+    <dd>{{name}}</dd>
     <dt>Description</dt>
     <dd>{{idea.description}}</dd>
     <dt>Email</dt>

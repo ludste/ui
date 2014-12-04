@@ -9,26 +9,19 @@ angular.module('uiApp')
       description: '',
       email: '',
       owner: '',
-      keyWords: ''
+      keywords: ''
     };
-    /*
-
-     $scope.$on('ideas.update', function () {
-     $scope.ideas = Ideas.ideas;
-     });
-     $scope.ideas = Ideas.ideas;
-     */
 
     $scope.addNewIdea = function (name, description, email, owner, keywords) {
-      Ideas.addIdea(
+      Ideas.save(
         {
           name: name,
           description: description,
           email: email,
           owner: owner,
-          keyWords: keywords
+          keywords: keywords
         }
       );
     };
-  }
+}
   ]);
