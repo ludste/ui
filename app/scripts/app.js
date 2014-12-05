@@ -18,42 +18,18 @@ angular
     'ngTouch',
     'sessionService'
   ]).config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.interceptors.push(['$location', '$rootScope', '$q', function ($location, $rootScope, $q) {
       return {
-        /*      // optional method
-         'request': function (config) {
-         // do something on success
-         alert('test');
-         return config;
-         },
-         */
-        /*
-         // optional method
-         'requestError': function (rejection) {
-         // do something on error
-         if (canRecover(rejection)) {
-         return responseOrNewPromise;
-         }
-         return $q.reject(rejection);
-         },
-         */
-        /*
-         // optional method
-         'response': function (response) {
-         // do something on success
-         return response;
-         },
-         */
-
         // optional method
         'responseError': function (rejection) {
-          // do something on error
           if (rejection.status === 401) {
             $rootScope.$broadcast('event:unauthorized');
-            $location.path('/users/login');
+            $location.path('/login');
             return rejection;
           }
+
           return $q.reject(rejection);
         }
       };
