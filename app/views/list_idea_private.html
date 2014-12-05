@@ -1,17 +1,42 @@
-<div><!--
-  <input type="text" ng-model="name_search">
-  <input type="text" ng-model="description_search">
-  | filter : {name:name_search, description: description_search}-->
+<div>
   <ul class="media-list">
-    <li class="media" ng-repeat="idea in newIdeas ">
-      <div class="media-left">
-        <p>{{idea.id}}</p>
-      </div>
+    <li class="media" ng-repeat="idea in ideas ">
       <div class="media-body">
         <h4 class="media-heading">{{idea.name}}</h4>
 
-        <p>Here will be the decription of the idea that we will create in our project. They might be long, or short, or
-          a little bit of both.{{idea.description}}</p>
+        <p>{{idea.description}}</p>
+
+        <div ng-if="idea.buyer != null">
+          <h5>Pending buy request from:</h5>
+
+          <p>Buyer name: {{idea.buyer.first_name}} {{idea.buyer.last_name}}<br>
+
+            Email: {{idea.buyer.email}}<br>
+
+            Phone number: {{idea.buyer.phone}}</p>
+        </div>
+      </div>
+      <div class=" media-bottom media-right btn-group" role="group" aria-label="...">
+        <button ng-if="!idea.published" type="button" class="btn btn-default"
+                ng-click="publishIdea(idea.id, $index,true)">
+          Publish
+        </button>
+        <button ng-if="idea.published" type="button" class="btn btn-default"
+                ng-click="publishIdea(idea.id, $index,false)">
+          Un publish
+        </button>
+        <button ng-if="idea.buyer != null" type="button" class="btn btn-default"
+                ng-click="respondToBuyRequest(idea.id, $index, true)">
+          Accept buy
+        </button>
+        <button ng-if="idea.buyer != null" type="button" class="btn btn-default"
+                ng-click="respondToBuyRequest(idea.id, $index, false)">
+          Decline buy
+        </button>
+        <button type="button" class="btn btn-default" ng-click="deleteIdea(idea.id, $index)">
+          Delete
+        </button>
+
       </div>
     </li>
   </ul>

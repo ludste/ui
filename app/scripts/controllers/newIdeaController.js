@@ -22,6 +22,7 @@ angular.module('uiApp')
           keywords: keywords
         }
       );
+      $scope.$broadcast('ideas.update');
     };
-}
+  }
   ]);

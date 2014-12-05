@@ -22,7 +22,6 @@ angular
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.interceptors.push(['$location', '$rootScope', '$q', function ($location, $rootScope, $q) {
       return {
-        // optional method
         'responseError': function (rejection) {
           if (rejection.status === 401) {
             $rootScope.$broadcast('event:unauthorized');
@@ -77,6 +76,6 @@ angular
         controller: 'SignupController'
       })
       .otherwise({
-        redirectTo: '/ideas'
+        redirectTo: '/login'
       });
   }]);
