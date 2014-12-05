@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('sessionService', [])
-  .factory('Session', ['$location', '$http', '$q', '$log', 'ApiConfig', function ($location, $http, $q, $log, ApiConfig) {
+  .factory('Session', ['$rootScope', '$location', '$http', '$q', '$log', 'ApiConfig', function ($rootScope, $location, $http, $q, $log, ApiConfig) {
     // Redirect to the given url (defaults to '/')
     function redirect(url) {
       url = url || '/';
@@ -17,6 +17,7 @@ angular.module('sessionService', [])
             service.currentUser = response.data;
 
             if (service.isAuthenticated()) {
+              $rootScope.$broadcast('logged_in');
               $location.path('/ideas');
             }
           });
@@ -25,6 +26,7 @@ angular.module('sessionService', [])
       logout: function () {
         $http.delete(ApiConfig.logout_url).then(function () {
           service.currentUser = null;
+          $rootScope.$broadcast('logged_out');
           redirect("/");
         });
       },
@@ -33,8 +35,26 @@ angular.module('sessionService', [])
 
       isAuthenticated: function () {
         return !!service.currentUser;
+      },
+
+      fetchCurrentUser: function () {
+        $http.get(ApiConfig.current_user_url)
+          .then(function (response) {
+            service.currentUser = response.data;
+
+            if (service.isAuthenticated()) {
+              $rootScope.$broadcast('logged_in');
+              $location.path('/ideas');
+            }
+          });
+      },
+      register: function (newUser) {
+        return null;
       }
     };
 
+    service.fetchCurrentUser();
+
     return service;
-  }]);
+  }])
+;

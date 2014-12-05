@@ -1,5 +1,5 @@
 <div id="signup">
-  <form role="form" id="signupForm">
+  <form ng-submit="signup()" name="signupForm" role="form">
     <div class="form-group">
       <label for="name">First name</label>
       <input type="text" class="form-control" ng-model="signupData.first_name" id="name"
@@ -10,10 +10,10 @@
       <input type="text" class="form-control" ng-model="signupData.last_name" id="lastname"
              placeholder="Enter your last name">
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="text" class="form-control" ng-model="signupData.email" id="email"
-             placeholder="Enter your email">
+    <div ng-class="{ 'has-error': loginForm.email.$error.email }" class="form-group">
+      <label for="userEmail">Email</label>
+      <input id="userEmail" type="email" class="form-control" name="email" ng-model="user.email"
+             placeholder="Enter your email" required>
     </div>
     <div class="form-group">
       <label for="phone">Phone number</label>
@@ -33,9 +33,8 @@
     <div ng-show="$passwordError" class="alert alert-danger" role="alert">
       <p> Try again, password don't match or are to long/shot </p>
     </div>
-    <button ng-click="signup()"
-            class="btn btn-default">
-      Sign up
-    </button>
+    <div class="form-group text-left">
+      <button class="btn btn-primary btn-lg">Signup</button>
+    </div>
   </form>
 </div>

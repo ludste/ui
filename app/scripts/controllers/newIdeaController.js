@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('uiApp')
-  .controller('NewIdeaController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
+  .controller('NewIdeaController', ['$scope', '$log', '$location', 'Ideas', function ($scope, $log, $location, Ideas) {
     $scope.newIdea = {
       name: '',
       description: '',
@@ -20,6 +20,9 @@ angular.module('uiApp')
           email: email,
           owner: owner,
           keywords: keywords
+        },
+        function () {
+          $location.path('/myIdeas');
         }
       );
       $scope.$broadcast('ideas.update');

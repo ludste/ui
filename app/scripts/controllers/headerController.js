@@ -9,8 +9,24 @@
  */
 angular.module('uiApp')
   .controller('HeaderController', ['$scope', 'Session', function ($scope, Session) {
-    /*
-     $scope.isAuthenticated = Session.isAuthenticated();
-     */
-    $scope.isAuthenticated = true;
+    var refreshUserInfo = function () {
+      $scope.isAuthenticated = Session.isAuthenticated();
+      if (Session.currentUser) {
+        $scope.email = Session.currentUser.email;
+      }
+    };
+
+    $scope.$on('logged_in', function () {
+      refreshUserInfo();
+    });
+
+    $scope.$on('logged_out', function () {
+      refreshUserInfo();
+    });
+
+    $scope.logOut = function () {
+      Session.logout();
+    };
+
+    refreshUserInfo();
   }]);
