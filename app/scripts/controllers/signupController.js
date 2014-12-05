@@ -9,8 +9,8 @@ angular.module('uiApp')
     $scope.init = function () {
       // the model that we bind to the input boxes
       $scope.signupData = {
-        name: '',
-        lastname: '',
+        first_name: '',
+        last_name: '',
         email: '',
         phone: '',
         password: '',
@@ -20,8 +20,8 @@ angular.module('uiApp')
 
 
       var newUser = {
-        name: '',
-        lastname: '',
+        first_name: '',
+        last_name: '',
         email: '',
         phone: '',
         password: ''
@@ -37,8 +37,8 @@ angular.module('uiApp')
         return;
       }
       var newUser = {};
-      newUser.name = $scope.signupData.name;
-      newUser.lastname = $scope.signupData.lastname;
+      newUser.first_name = $scope.signupData.first_name;
+      newUser.last_name = $scope.signupData.last_name;
       newUser.email = $scope.signupData.email;
       newUser.phone = $scope.signupData.phone;
       newUser.password = $scope.signupData.password;

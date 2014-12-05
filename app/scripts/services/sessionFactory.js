@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('sessionService', [])
-  .factory('Session', [ '$location', '$http', '$q', '$log', 'ApiConfig', function ($location, $http, $q, $log, ApiConfig) {
+  .factory('Session', ['$location', '$http', '$q', '$log', 'ApiConfig', function ($location, $http, $q, $log, ApiConfig) {
     // Redirect to the given url (defaults to '/')
     function redirect(url) {
       url = url || '/';
@@ -12,7 +12,7 @@ angular.module('sessionService', [])
 
     var service = {
       login: function (email, password) {
-        return $http.post(ApiConfig.login_url, { user: { email: email, password: password } })
+        return $http.post(ApiConfig.login_url, {user: {email: email, password: password}})
           .then(function (response) {
             service.currentUser = response.data;
 
