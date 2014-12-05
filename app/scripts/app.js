@@ -67,7 +67,7 @@ angular
     $routeProvider
       .when('/newIdea', {
         templateUrl: 'views/newIdea.html',
-        controller: 'IdeaController'
+        controller: 'NewIdeaController'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -90,7 +90,10 @@ angular
         controller: 'ContactController'
       })
       .when('/ideas', {
-        templateUrl: 'views/list_idea.html',
+        templateUrl: '../views/list_idea_public.html',
+        controller: 'MainController'
+      }).when('/myIdeas', {
+        templateUrl: '../views/list_idea_private.html',
         controller: 'MainController'
       })
       .when('/signup', {

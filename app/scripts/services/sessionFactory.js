@@ -10,9 +10,15 @@ angular.module('sessionService', [])
       $location.path(url);
     }
 
+    var users = {
+      0: {
+        name: 'Ludivg'
+      },
+      1: {}
+    };
     var service = {
       login: function (email, password) {
-        return $http.post('/login', {user: {email: email, password: password}})
+        return $http.post('/api/sessions', {user: {email: email, password: password}})
           .then(function (response) {
             service.currentUser = response.data.user;
             if (service.isAuthenticated()) {
@@ -23,25 +29,19 @@ angular.module('sessionService', [])
           });
       },
 
-      logout: function (redirectTo) {
-        $http.post('/logout').then(function () {
+      logout: function (redirectTo, userId) {
+        $http.delete('/api/sessions/' + userId).then(function () {
           service.currentUser = null;
           redirect(redirectTo);
         });
       },
 
-      register: function (email, password, confirm_password) {
-        return $http.post('/users.json', {
-          user: {
-            email: email,
-            password: password,
-            password_confirmation: confirm_password
-          }
-        })
+      register: function (newUser) {
+        return $http.post('api/users.json', newUser)
           .then(function (response) {
             service.currentUser = response.data;
             if (service.isAuthenticated()) {
-              $location.path('/record');
+              $location.path('/ideas');
             }
           });
       },

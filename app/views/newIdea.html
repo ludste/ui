@@ -41,16 +41,13 @@
   </form>
 </div>
 <div>
-  <dl class="dl-horizontal" ng-repeat="idea in ideas">
-    <dt>Name</dt>
-    <dd>{{name}}</dd>
-    <dt>Description</dt>
-    <dd>{{idea.description}}</dd>
-    <dt>Email</dt>
-    <dd>{{idea.email}}</dd>
-    <dt>Owner</dt>
-    <dd>{{idea.owner}}</dd>
-    <dt>Keywords</dt>
-    <dd>{{idea.keyWords}}</dd>
-  </dl>
+  <h3>Preview of your new idea</h3>
+
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">{{newIdea.name}}</h4>
+
+      <p>{{newIdea.description}}</p>
+    </div>
+  </div>
 </div>

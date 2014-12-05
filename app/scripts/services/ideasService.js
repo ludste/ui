@@ -30,7 +30,7 @@ angular.module('uiApp')
      }
      };*/
 
-    return $resource("http://localhost:3000/api/ideas.json");
+    return $resource("http://localhost:3000/api/ideas.json", {}, {});
 
     /*    return $resource(
      'api/idea/:ideaId', //URL

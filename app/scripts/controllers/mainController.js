@@ -10,7 +10,6 @@
 angular.module('uiApp')
   .controller('MainController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
     $scope.$on('ideas.update', function () {
-      $log.info('here');
       $scope.ideas = Ideas.query();
     });
     $scope.newIdeas = Ideas.query();

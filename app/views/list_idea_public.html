@@ -1,0 +1,20 @@
+<div><!--
+  <input type="text" ng-model="name_search">
+  <input type="text" ng-model="description_search">
+  | filter : {name:name_search, description: description_search}-->
+  <ul class="media-list">
+    <li class="media" ng-repeat="idea in newIdeas ">
+      <div class="media-left">
+        <p>{{idea.id}}</p>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{idea.name}}</h4>
+
+        <p>Here will be the decription of the idea that we will create in our project. They might be long, or short, or
+          a little bit of both.{{idea.description}}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+

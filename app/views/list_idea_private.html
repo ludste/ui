@@ -1,6 +1,9 @@
-<div>
+<div><!--
+  <input type="text" ng-model="name_search">
+  <input type="text" ng-model="description_search">
+  | filter : {name:name_search, description: description_search}-->
   <ul class="media-list">
-    <li class="media" ng-repeat="idea in newIdeas">
+    <li class="media" ng-repeat="idea in newIdeas ">
       <div class="media-left">
         <p>{{idea.id}}</p>
       </div>

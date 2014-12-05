@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('uiApp')
-  .controller('IdeaController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
+  .controller('NewIdeaController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
     $scope.newIdea = {
       name: '',
       description: '',
