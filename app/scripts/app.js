@@ -91,7 +91,7 @@ angular
       })
       .when('/ideas', {
         templateUrl: '../views/list_idea_public.html',
-        controller: 'MainController'
+        controller: 'PublicListController'
       }).when('/myIdeas', {
         templateUrl: '../views/list_idea_private.html',
         controller: 'MainController'
