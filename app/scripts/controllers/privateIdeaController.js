@@ -52,9 +52,14 @@ angular.module('uiApp')
         idea.buyer = null;
         Ideas.rejectBuyRequest({ideaId: idea.id}, idea);
       }
-      ;
+    };
+    $scope.showDeleteDialog = function (idea, index) {
+      $scope.ideaToDelete = idea;
+      $scope.ideaIndex = index;
+      $('#deleteIdea').modal('toggle');
     };
     $scope.deleteIdea = function (idea, index) {
+      $('#deleteIdea').modal('toggle');
       Ideas.delete({ideaId: idea.id}, function (response) {
       });
       $scope.ideas.splice(index, 1);
@@ -71,5 +76,4 @@ angular.module('uiApp')
       });
     };
     $scope.init();
-  }])
-;
+  }]);

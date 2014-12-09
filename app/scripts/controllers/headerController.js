@@ -28,5 +28,7 @@ angular.module('uiApp')
       Session.logout();
     };
 
-    refreshUserInfo();
+    /*
+     refreshUserInfo();
+     */
   }]);

@@ -34,6 +34,8 @@ angular.module('sessionService', [])
       currentUser: null,
 
       isAuthenticated: function () {
+        $log.debug("Current user:");
+        $log.debug(!!service.currentUser);
         return !!service.currentUser;
       },
 
