@@ -1,38 +1,33 @@
-<div><!--
-  <input type="text" ng-model="name_search">
-  <input type="text" ng-model="description_search">
-  | filter : {name:name_search, description: description_search}-->
-
+<div>
   <div class="alert alert-success" ng-show="bought">
     {{message}}
-    <!--<a class="close" data-dismiss="alert">×</a>-->
   </div>
 
-  <ul class="media-list">
+  <ul ng-if="ideas" class="media-list">
     <li class="media" ng-repeat="idea in ideas ">
-      <!--<div class="media-left">-->
-      <!--<p>{{idea.id}}</p>-->
-      <!--</div>-->
       <div class="media-body">
-        <h4 class="media-heading">{{idea.name}}</h4>
+        <a ng-href="#/idea/{{idea.id}}">
+          <h4 class="media-heading">{{idea.name}}</h4>
+        </a>
 
         <p>{{idea.description}}</p>
 
         <p class="text-muted">by {{idea.owner.email}}</p>
-
       </div>
-
-      <div ng-show="canBuyIdea(idea)" class="btn-group media-right">
+      <div ng-if="canBuyIdea(idea)" class="btn-group media-right">
         <button type="button" class="btn btn-default bt-sm" ng-click="buyIdea(idea, $index)"> Buy</button>
       </div>
-
-      <!--<div>-->
-      <!--<input name="idea_comment" type="text" ng-model="comment" placeholder="Comment this idea">-->
-      <!--<button type="button" class="btn btn-default bt-sm" ng-click="commentIdea(idea.id)">Comment</button>-->
-      <!--</div>-->
-
     </li>
   </ul>
+  <div ng-if="ideas.length == 0" class="well well-sm">
+    <h3>No ideas exist in the system, be the first one to create a great Idea! </h3>
+    <a ng-href="#/newIdea">
+      <button type="button" class="btn btn-default" ng->
+        Create a new Idea
+      </button>
+    </a>
+  </div>
 </div>
-
+<div ng-include="'views/ideaNotFoundDialog.html'">
+</div>
 

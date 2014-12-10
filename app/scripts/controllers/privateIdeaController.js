@@ -7,10 +7,11 @@
  * Controller of the uiApp
  */
 angular.module('uiApp')
-  .controller('MainController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
+  .controller('PrivateIdeaController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
     $scope.init = function () {
       $scope.ideas = Ideas.getPrivateIdeas();
-    }
+      $log.debug($scope.ideas);
+    };
     $scope.respondToBuyRequest = function (idea, index, respose) {
       if (respose) {
         idea.accepted = true;

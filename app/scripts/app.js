@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'sessionService'
+    'sessionService',
+    'angularMoment'
   ]).config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
@@ -28,6 +29,11 @@ angular
             $location.path('/login');
             return rejection;
           }
+          /*    if (rejection.status === 404) {
+           $rootScope.$broadcast('event:not_found');
+           $location.path('notFound');
+           return rejection;
+           }*/
 
           return $q.reject(rejection);
         }
@@ -52,10 +58,6 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LogoutController'
       })
-      .when('/signup', {
-        templateUrl: 'views/login.html',
-        controller: 'SignupController'
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutController'
@@ -66,14 +68,22 @@ angular
       })
       .when('/ideas', {
         templateUrl: '../views/list_idea_public.html',
-        controller: 'PublicListController'
-      }).when('/myIdeas', {
+        controller: 'PublicIdeaController'
+      })
+      .when('/myIdeas', {
         templateUrl: '../views/list_idea_private.html',
-        controller: 'MainController'
+        controller: 'PrivateIdeaController'
+      })
+      .when('/idea/:ideaId', {
+        templateUrl: '../views/idea_detailed.html',
+        controller: 'IdeaDetailsController'
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupController'
+      }).when('/notFound', {
+        templateUrl: '404.html',
+        controller: ''
       })
       .otherwise({
         redirectTo: '/login'

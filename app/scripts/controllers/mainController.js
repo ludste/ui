@@ -8,7 +8,7 @@
  * Controller of the uiApp
  */
 angular.module('uiApp')
-  .controller('MainController', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
+  .controller('PublicIdea', ['$scope', '$log', 'Ideas', function ($scope, $log, Ideas) {
     $scope.$on('ideas.update', function () {
       $scope.ideas = Ideas.query();
     });

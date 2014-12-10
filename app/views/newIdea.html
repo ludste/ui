@@ -33,7 +33,7 @@
 <div>
   <h3>Preview of your new idea</h3>
 
-  <div class="media">
+  <div ng ng-if="newIdea.name.length > 0 || newIdea.description.length > 0" class="media well well-sm">
     <div class="media-body">
       <h4 class="media-heading">{{newIdea.name}}</h4>
 

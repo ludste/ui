@@ -34,8 +34,7 @@ angular.module('sessionService', [])
       currentUser: null,
 
       isAuthenticated: function () {
-        $log.debug("Current user:");
-        $log.debug(!!service.currentUser);
+        $log.debug("Current user:" + !!service.currentUser);
         return !!service.currentUser;
       },
 
@@ -46,7 +45,6 @@ angular.module('sessionService', [])
 
             if (service.isAuthenticated()) {
               $rootScope.$broadcast('logged_in');
-              $location.path('/ideas');
             }
           });
       },

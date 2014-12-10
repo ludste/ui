@@ -17,15 +17,6 @@ angular.module('uiApp')
         passwordRepeat: ''
       };
       $scope.$passwordError = false;
-
-
-      var newUser = {
-        first_name: '',
-        last_name: '',
-        email: '',
-        phone: '',
-        password: ''
-      }
     };
     $scope.signup = function () {
       $log.debug('Password length = ' + $scope.signupData.password.length);
@@ -44,14 +35,6 @@ angular.module('uiApp')
       newUser.password = $scope.signupData.password;
 
       Session.register(newUser);
-      /*
-       newUser.$save().then(function (response) {
-       var id = response.id;
-       $rootScope.$broadcast('loggedIn', {userId: id});
-       $cookieStore.put('loggedIn', true);
-       $cookieStore.put('userId', id);
-       $window.location.href = '/#/user/' + id + '/home';
-       });*/
     };
 
     $scope.init();
