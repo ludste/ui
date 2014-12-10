@@ -81,7 +81,8 @@ angular
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupController'
-      }).when('/notFound', {
+      })
+      .when('/notFound', {
         templateUrl: '404.html',
         controller: ''
       })

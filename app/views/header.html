@@ -10,6 +10,8 @@
     </li>
     <li ng-show="isAuthenticated"><a ng-click="logOut()">LogOut</a></li>
   </ul>
-  <a ng-href="#/ideas"><h3 class="text-muted">Ideaer</h3></a>
+  <a ng-if="isAuthenticated" ng-href="#/ideas"><h3 class="text-muted">Ideaer</h3></a>
+
+  <h3 ng-if="!isAuthenticated">Ideaer</h3>
 </div>
 
