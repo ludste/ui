@@ -10,7 +10,7 @@
       </button>
     </a>
   </div>
-  <ul ng-if="ideas > 0" class="media-list">
+  <ul ng-if="ideas.length > 0" class="media-list">
     <li class="media" ng-repeat="idea in ideas ">
       <div class="media-body">
         <a ng-href="#/idea/{{idea.id}}">
@@ -54,6 +54,6 @@
     </li>
   </ul>
 </div>
-<div ng-include="'deleteDialog.html'">
+<div ng-include="'views/deleteDialog.html'">
 
 </div>
