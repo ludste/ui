@@ -15,7 +15,8 @@ angular.module('sessionService', [])
         return $http.post(ApiConfig.login_url, {user: {email: email, password: password}})
           .then(function (response) {
             service.currentUser = response.data;
-
+            service.currentUser.role = 1;
+            $log.debug(service.currentUser);
             if (service.isAuthenticated()) {
               $rootScope.$broadcast('logged_in');
               $location.path('/ideas');
@@ -35,14 +36,26 @@ angular.module('sessionService', [])
 
       isAuthenticated: function () {
         $log.debug("Current user:" + !!service.currentUser);
-        return !!service.currentUser;
+        if (service.currentUser != null) {
+          return !!service.currentUser;
+        }
+        return false;
+      },
+
+      isModerator: function () {
+        if (service.currentUser != null) {
+            return service.currentUser.role == 1;
+
+        }
+        return false;
+
       },
 
       fetchCurrentUser: function () {
         $http.get(ApiConfig.current_user_url)
           .then(function (response) {
             service.currentUser = response.data;
-
+            service.currentUser.role = 1;
             if (service.isAuthenticated()) {
               $rootScope.$broadcast('logged_in');
             }

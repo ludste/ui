@@ -37,13 +37,6 @@ angular.module('uiApp')
       });
       $scope.newComment = '';
       $scope.isAutheticated = Session.isAuthenticated();
-      $log.debug("Is authenticated : " + $scope.isAuthenticated);
-      $log.debug("Current user : " + Session.currentUser);
-
-      //Register event for when idea not found modal is closed.
-      $('#ideaNotFound').on('hidden.bs.modal', function () {
-        $window.location.href = '/#/ideas';
-      });
     };
 
     $scope.canBuyIdea = function (idea) {
@@ -72,10 +65,10 @@ angular.module('uiApp')
     $scope.addComment = function () {
       $log.debug("Adding new comment to idea");
       if ($scope.newComment.length > 0) {
-        $scope.idea.comments.push(
-          {
-            comment: $scope.newComment
-          });
+        /* $scope.idea.comments.push(
+         {
+         comment: $scope.newComment
+         });*/
         Ideas.addNewComment({ideaId: $scope.ideaId}, {comment: $scope.newComment}, function (response) {
           $log.debug(response);
           $scope.$broadcast('added_comment');

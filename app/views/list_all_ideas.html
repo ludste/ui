@@ -1,0 +1,39 @@
+<div>
+  <div class="alert alert-success" ng-show="bought">
+    {{message}}
+  </div>
+
+  <ul ng-if="ideas" class="media-list">
+    <li class="media" ng-repeat="idea in ideas ">
+      <div class="media-body">
+        <a ng-href="#/idea/{{idea.id}}">
+          <h4 class="media-heading">{{idea.name}}</h4>
+        </a>
+
+        <p>{{idea.description}}</p>
+
+        <div class="well well-sm">
+          <p class="text-muted">Creator: {{idea.owner.email}}</p>
+
+          <p class="text-muted">Published: {{idea.published}}</p>
+
+          <p class="text-muted">Buyer: {{idea.buyer}}</p>
+        </div>
+      </div>
+      <div ng-if="canBuyIdea(idea)" class="btn-group media-right">
+        <button type="button" class="btn btn-default bt-sm" ng-click="buyIdea(idea, $index)"> Buy</button>
+      </div>
+    </li>
+  </ul>
+  <div ng-if="ideas.length == 0" class="well well-sm">
+    <h3>No ideas exist in the system, be the first one to create a great Idea! </h3>
+    <a ng-href="#/newIdea">
+      <button type="button" class="btn btn-default" ng->
+        Create a new Idea
+      </button>
+    </a>
+  </div>
+</div>
+<div ng-include="'views/ideaNotFoundDialog.html'">
+</div>
+

@@ -14,7 +14,9 @@ angular.module('uiApp')
       if (Session.currentUser) {
         $scope.email = Session.currentUser.email;
       }
+      $scope.isModerator = Session.isModerator();
     };
+
 
     $scope.$on('logged_in', function () {
       refreshUserInfo();
@@ -28,7 +30,5 @@ angular.module('uiApp')
       Session.logout();
     };
 
-    /*
-     refreshUserInfo();
-     */
+    refreshUserInfo();
   }]);

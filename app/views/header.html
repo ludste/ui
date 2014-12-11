@@ -1,10 +1,13 @@
 <div role="navigation" class="header" ng-controller="HeaderController">
   <ul class="nav nav-pills pull-right">
-    <li><a ng-href="#/ideas">Ideas</a></li>
+    <!--
+        <li><a ng-href="#/ideas">Ideas</a></li>
+    -->
     <li ng-show="isAuthenticated"><a ng-href="#/newIdea">New idea</a></li>
     <li ng-show="isAuthenticated"><a ng-href="#/myIdeas">My ideas</a></li>
     <li><a ng-href="#/about">About</a></li>
     <li><a ng-href="#/Contact">Contact</a></li>
+    <li ng-if="isModerator"><a ng-href="#/allIdeas">List all ideas</a></li>
     <li ng-show="isAuthenticated">
       <a>{{email}}</a>
     </li>

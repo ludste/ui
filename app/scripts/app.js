@@ -78,6 +78,10 @@ angular
         templateUrl: '../views/idea_detailed.html',
         controller: 'IdeaDetailsController'
       })
+      .when('/allIdeas', {
+        templateUrl: '../views/list_all_ideas.html',
+        controller: 'IdeaModeratorController'
+      })
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupController'
