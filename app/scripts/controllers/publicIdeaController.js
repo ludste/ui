@@ -49,5 +49,12 @@ angular.module('uiApp')
         $scope.ideas = Ideas.query();
 
       };
+
+      $scope.voteIdea = function (idea) {
+        Ideas.vote(idea);
+        idea.votes += 1;
+        idea.voted = true;
+      };
+
       $scope.init();
     }]);

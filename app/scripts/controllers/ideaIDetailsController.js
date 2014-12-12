@@ -115,5 +115,11 @@ angular.module('uiApp')
       $scope.idea = Ideas.get({ideaId: $scope.ideaId});
     };
 
+    $scope.updateIdea = function (idea) {
+      Ideas.update({ideaId: idea.id}, idea, function () {
+        $scope.message = "Your idea has been updated!";
+      });
+    };
+
     $scope.init();
   }]);

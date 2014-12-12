@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'sessionService',
+    'xeditable',
     'angularMoment'
   ]).config(['$httpProvider', function ($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
@@ -93,4 +94,7 @@ angular
       .otherwise({
         redirectTo: '/login'
       });
-  }]);
+  }])
+  .run(function(editableOptions) {
+    editableOptions.theme = 'bs3';
+  });

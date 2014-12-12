@@ -13,9 +13,20 @@
         <p>{{idea.description}}</p>
 
         <p class="text-muted">by {{idea.owner.email}}</p>
+
       </div>
-      <div ng-if="canBuyIdea(idea)" class="btn-group media-right">
-        <button type="button" class="btn btn-default bt-sm" ng-click="buyIdea(idea, $index)"> Buy</button>
+      <div class="btn-group media-right">
+        <button ng-if="canBuyIdea(idea)" type="button" class="btn btn-default bt-sm"
+                ng-click="buyIdea(idea, $index)"> Buy</button>
+        <button ng-hide="idea.voted" type="button" class="btn btn-default" ng-click="voteIdea(idea)">
+          Vote this idea
+        </button>
+        <br>
+        <br>
+        <h5 class="media-heading"><strong># Votes: {{idea.votes}}</strong></h5>
+      </div>
+      <div class="media-right">
+
       </div>
     </li>
   </ul>
