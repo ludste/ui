@@ -13,9 +13,10 @@
   <ul ng-if="ideas.length > 0" class="media-list">
     <li class="media" ng-repeat="idea in ideas ">
       <div class="media-body">
-        <a ng-href="#/idea/{{idea.id}}">
-          <h4 class="media-heading">{{idea.name}}</h4>
-        </a>
+        <h4 class="media-heading">
+          <a ng-href="#/idea/{{idea.id}}">{{idea.name}}</a>
+          <span ng-show="idea.published" class="label label-info">public</span>
+        </h4>
 
         <p>{{idea.description}}</p>
 

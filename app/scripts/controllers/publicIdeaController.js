@@ -56,5 +56,19 @@ angular.module('uiApp')
         idea.voted = true;
       };
 
+      $scope.searchIdeas = function () {
+        var query = $scope.searchQuery;
+
+        if (query.length > 3) {
+          Ideas.search({ query: query }, function (data) {
+            $scope.currentQuery = query;
+            $scope.ideas = data;
+          });
+        } else if (query.length == 0) {
+          $scope.currentQuery = null;
+          refreshIdeasList()
+        }
+      };
+
       $scope.init();
     }]);

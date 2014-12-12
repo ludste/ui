@@ -1,4 +1,15 @@
 <div>
+  <form class="well form-inline" ng-submit="searchIdeas()">
+    <div class="form-group">
+      <label class="sr-only">Search</label>
+      <input ng-model="searchQuery" type="text" placeholder="Search" class="form-control" />
+    </div>
+
+    <button ng-disabled="searchQuery.length <= 3" class="btn btn-default" type="submit">Search</button>
+  </form>
+
+  <h3 ng-show="currentQuery">Ideas that match "{{currentQuery}}"</h3>
+
   <div class="alert alert-success" ng-show="bought">
     {{message}}
   </div>
@@ -30,13 +41,17 @@
       </div>
     </li>
   </ul>
-  <div ng-if="ideas.length == 0" class="well well-sm">
+  <div ng-if="ideas.length == 0 && !currentQuery" class="well well-sm">
     <h3>No ideas exist in the system, be the first one to create a great Idea! </h3>
     <a ng-href="#/newIdea">
       <button type="button" class="btn btn-default" ng->
         Create a new Idea
       </button>
     </a>
+  </div>
+
+  <div ng-show="ideas.length == 0 && currentQuery" class="alert alert-warning">
+    No ideas match your search criteria.
   </div>
 </div>
 <div ng-include="'views/ideaNotFoundDialog.html'">
