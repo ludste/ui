@@ -13,6 +13,7 @@ angular.module('uiApp')
       rejectBuyRequest: {method: 'POST', url: ApiConfig.reject_buy_request_ideas_url},
       addNewComment: {method: 'POST', url: ApiConfig.add_new_comment_url},
       getAllIdeas: {method: 'GET', url: ApiConfig.add_new_comment_url, isArray:true},
-      vote: {method: 'POST', params: { ideaId: "@id" }, url: ApiConfig.vote_ideas_url}
+      vote: {method: 'POST', params: { ideaId: "@id" }, url: ApiConfig.vote_ideas_url},
+      search: { method: 'GET', url: ApiConfig.search_ideas_url, isArray: true }
     });
   }]);

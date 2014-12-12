@@ -15,6 +15,7 @@ angular.module('uiApp')
       reject_buy_request_ideas_url: baseUrl + 'api/ideas/:ideaId/reject.json',
       add_new_comment_url: baseUrl + 'api/ideas/:ideaId/comments.json',
       allIdeas: baseUrl + 'api/ideas.json',
-      vote_ideas_url: baseUrl + 'api/ideas/:ideaId/votes.json'
+      vote_ideas_url: baseUrl + 'api/ideas/:ideaId/votes.json',
+      search_ideas_url: baseUrl + 'api/ideas/search.json'
     }
   }]);
