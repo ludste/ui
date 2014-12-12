@@ -13,24 +13,25 @@ angular.module('uiApp')
     function ($scope, Session, $log, Ideas, $timeout, BuyIdea) {
       $scope.init = function () {
         refreshIdeasList();
-        $scope.comment = '';
-        $scope.isAutheticated = Session.isAuthenticated();
+        /*  if (Session.isAuthenticated()) {
+         $scope.user = Session.fetchCurrentUser();
+         }
+         $scope.isModerator = Session.isModerator();*/
       };
-
-      $scope.$on('ideas.update', function () {
-        $scope.ideas = Ideas.query();
-      });
-
-      $scope.canBuyIdea = function (idea) {
-        return BuyIdea.canBuyIdea(idea);
-      };
+      /*
+       $scope.$on('ideas.update', function () {
+       $scope.ideas = Ideas.query();
+       });*/
+       $scope.canBuyIdea = function (idea) {
+       return BuyIdea.canBuyIdea(idea);
+       };
 
       $scope.buyIdea = function (idea, index) {
         BuyIdea.buyIdea(idea, index);
       };
 
       $scope.$on('idea_bought_ok', function (idea, index) {
-        $log.debug('Responded to idea_bought_ok event ')
+        $log.debug('Responded to idea_bought_ok event ');
         $scope.ideas.splice(index, 1);
         $scope.bought = true;
         $scope.message = "You've requested to by the idea: " + idea.name;
@@ -38,7 +39,8 @@ angular.module('uiApp')
           $scope.bought = false;
         }, 3000);
       });
-      $scope.$on('idea_not_found', function (idea, index) {
+
+      $scope.$on('idea_not_found', function () {
         $log.debug('Responded to idea_not_found event ');
         $('#ideaNotFound').modal('toggle');
         refreshIdeasList();
@@ -60,7 +62,7 @@ angular.module('uiApp')
         var query = $scope.searchQuery;
 
         if (query.length > 3) {
-          Ideas.search({ query: query }, function (data) {
+          Ideas.search({query: query}, function (data) {
             $scope.currentQuery = query;
             $scope.ideas = data;
           });

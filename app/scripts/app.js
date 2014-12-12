@@ -30,11 +30,6 @@ angular
             $location.path('/login');
             return rejection;
           }
-          /*    if (rejection.status === 404) {
-           $rootScope.$broadcast('event:not_found');
-           $location.path('notFound');
-           return rejection;
-           }*/
 
           return $q.reject(rejection);
         }

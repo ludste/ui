@@ -11,15 +11,22 @@ angular.module('sessionService', [])
     }
 
     var service = {
+      loginError: '',
       login: function (email, password) {
         return $http.post(ApiConfig.login_url, {user: {email: email, password: password}})
           .then(function (response) {
-            service.currentUser = response.data;
-            service.currentUser.role = 1;
-            $log.debug(service.currentUser);
-            if (service.isAuthenticated()) {
-              $rootScope.$broadcast('logged_in');
-              $location.path('/ideas');
+            if (response.status === 401) {
+              service.loginError = "Invalid email or password";
+            } else {
+              service.currentUser = response.data;
+              $log.debug("Login ok");
+              $log.debug(response.status);
+
+              $log.debug(service.currentUser);
+              if (service.isAuthenticated()) {
+                $rootScope.$broadcast('logged_in');
+                $location.path('/ideas');
+              }
             }
           });
       },
@@ -34,6 +41,7 @@ angular.module('sessionService', [])
 
       currentUser: null,
 
+
       isAuthenticated: function () {
         $log.debug("Current user:" + !!service.currentUser);
         if (service.currentUser != null) {
@@ -43,19 +51,16 @@ angular.module('sessionService', [])
       },
 
       isModerator: function () {
-        if (service.currentUser != null) {
-            return service.currentUser.role == 1;
-
+        if (service.isAuthenticated()) {
+          return service.currentUser.role == 'moderator';
         }
         return false;
-
       },
 
       fetchCurrentUser: function () {
         $http.get(ApiConfig.current_user_url)
           .then(function (response) {
             service.currentUser = response.data;
-            service.currentUser.role = 1;
             if (service.isAuthenticated()) {
               $rootScope.$broadcast('logged_in');
             }

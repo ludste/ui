@@ -2,7 +2,7 @@
   <form class="well form-inline" ng-submit="searchIdeas()">
     <div class="form-group">
       <label class="sr-only">Search</label>
-      <input ng-model="searchQuery" type="text" placeholder="Search" class="form-control" />
+      <input ng-model="searchQuery" type="text" placeholder="Search" class="form-control"/>
     </div>
 
     <button ng-disabled="searchQuery.length <= 3" class="btn btn-default" type="submit">Search</button>
@@ -15,8 +15,8 @@
   </div>
 
   <ul ng-if="ideas" class="media-list">
-    <li class="media" ng-repeat="idea in ideas ">
-      <div class="media-body">
+    <li class="media row" ng-repeat="idea in ideas ">
+      <div class="media-body col-md-8">
         <a ng-href="#/idea/{{idea.id}}">
           <h4 class="media-heading">{{idea.name}}</h4>
         </a>
@@ -26,25 +26,24 @@
         <p class="text-muted">by {{idea.owner.email}}</p>
 
       </div>
-      <div class="btn-group media-right">
+      <div class="btn-group-vertical media-right">
         <button ng-if="canBuyIdea(idea)" type="button" class="btn btn-default bt-sm"
-                ng-click="buyIdea(idea, $index)"> Buy</button>
+                ng-click="buyIdea(idea, $index)"> Buy
+        </button>
         <button ng-hide="idea.voted" type="button" class="btn btn-default" ng-click="voteIdea(idea)">
           Vote this idea
         </button>
-        <br>
-        <br>
-        <h5 class="media-heading"><strong># Votes: {{idea.votes}}</strong></h5>
-      </div>
-      <div class="media-right">
-
+        <button ng-if="isModerator" type="button" class="btn btn-danger bt-sm" ng-click="buyIdea(idea, $index)">
+          Delete
+        </button>
+        <h5 id="numberOfVotes" class="media-heading"><strong># Votes: {{idea.votes}}</strong></h5>
       </div>
     </li>
   </ul>
   <div ng-if="ideas.length == 0 && !currentQuery" class="well well-sm">
     <h3>No ideas exist in the system, be the first one to create a great Idea! </h3>
     <a ng-href="#/newIdea">
-      <button type="button" class="btn btn-default" ng->
+      <button type="button" class="btn btn-default">
         Create a new Idea
       </button>
     </a>

@@ -20,6 +20,7 @@ angular.module('uiApp')
                 last_name: "Stenstrom",
                 email: "ludvig@email.com"
               },
+              id: 21,
               comment: "This idea sucks! better get a job!",
               created_at: "2014-04-23T18:25:43.511Z"
             },
@@ -29,6 +30,7 @@ angular.module('uiApp')
                 last_name: "Mendonca",
                 email: "ismael@email.com"
               },
+              id: 22,
               comment: "Yeah, is a shitty idea!",
               created_at: "2012-04-23T19:25:43.511Z"
             }
@@ -36,24 +38,27 @@ angular.module('uiApp')
         }
       });
       $scope.newComment = '';
-      $scope.isAutheticated = Session.isAuthenticated();
+      if(Session.isAuthenticated()){
+        $scope.user = Session.fetchCurrentUser();
+      }
+      $scope.isModerator = Session.isModerator();
     };
 
     $scope.canBuyIdea = function (idea) {
       return BuyIdea.canBuyIdea(idea);
     };
 
-    $scope.buyIdea = function (idea, index) {
-      BuyIdea.buyIdea(idea, index);
+    $scope.buyIdea = function (idea) {
+      BuyIdea.buyIdea(idea);
     };
 
-    $scope.$on('idea_bought_ok', function (idea, index) {
+    $scope.$on('idea_bought_ok', function (idea) {
       $log.debug('Responded to idea_bought_ok event ');
       $scope.bought = true;
       $scope.message = "You've requested to by this idea: " + idea.name;
     });
 
-    $scope.$on('idea_not_found', function (idea, index) {
+    $scope.$on('idea_not_found', function () {
       $log.debug('Responded to idea_not_found event ');
       $('#ideaNotFound').modal('toggle');
     });
@@ -91,12 +96,18 @@ angular.module('uiApp')
     $scope.showDeleteDialog = function (idea, index) {
       $scope.ideaToDelete = idea;
       $scope.ideaIndex = index;
-      $('#deleteIdea').modal('toggle');
+      $('#deleteConfirm').modal('toggle');
     };
     $scope.deleteIdea = function (idea, index) {
-      $('#deleteIdea').modal('toggle');
+      $('#deleteConfirm').modal('toggle');
       Ideas.delete({ideaId: idea.id}, function (response) {
         $window.location.href = '/#/ideas';
+      });
+    };
+    $scope.deleteComment = function (comment, index) {
+      $('#deleteConfirm').modal('toggle');
+      Ideas.delete({ideaId: comment.id}, function (response) {
+        $scope.idea.comments.splice(index, 1);
       });
     };
 

@@ -6,43 +6,44 @@
     <div>
       <h3 editable-text="idea.name" e-name="idea-name">{{idea.name}}
         <small> Created by -- {{idea.owner.email}}</small>
-        <button ng-if="canBuyIdea(idea)" type="button" class="btn btn-default bt-sm" ng-click="buyIdea(idea, $index)"> Buy
+        <button ng-if="canBuyIdea(idea)" type="button" class="btn btn-default bt-sm"
+                ng-click="buyIdea(idea, $index)">
+          Buy
         </button>
       </h3>
-      <!--    <div class="btn-group">
-            <button type="button" class="btn btn-default bt-sm" ng-click="buyIdea(idea, $index)"> Buy</button>
-          </div>-->
+
     </div>
     <div class="ideaDescription">
-      <h5>Description</h5>
+      <h5>Description - # Votes: {{idea.votes}}</h5>
 
       <p editable-text="idea.description" e-name="idea-description">{{idea.description}}</p>
     </div>
-    <div ng-if="!canBuyIdea(idea)" class="well well-sm">
+    <div ng-if="isModerator || !canBuyIdea(idea)" class="well well-sm">
       <h4>Idea control</h4>
 
       <div class="btn-group" role="group" aria-label="...">
-        <button ng-show="!idea.published" type="button" class="btn btn-default"
+        <button ng-show="!idea.published && !isModerator" type="button" class="btn btn-default"
                 ng-click="publishIdea(idea, $index, true)">
           Publish
         </button>
-        <button ng-show="idea.published && !idea.buyer" type="button" class="btn btn-default"
+        <button ng-show="idea.published && !idea.buyer && !isModerator" type="button" class="btn btn-default"
                 ng-click="publishIdea(idea, $index, false)">
           Un publish
         </button>
-        <button ng-show="idea.buyer" type="button" class="btn btn-default"
+        <button ng-show="idea.buyer  && !isModerator" type="button" class="btn btn-default"
                 ng-click="respondToBuyRequest(idea, $index, true)">
           Accept buy
         </button>
-        <button ng-show="idea.buyer" type="button" class="btn btn-default"
+        <button ng-show="idea.buyer  && !isModerator" type="button" class="btn btn-default"
                 ng-click="respondToBuyRequest(idea, $index, false)">
           Decline buy
         </button>
-        <button ng-show="!idea.buyer && !idea.published" type="button" class="btn btn-danger"
+        <button ng-show="isModerator || (!idea.buyer && !idea.published)" type="button" class="btn btn-danger"
                 ng-click="showDeleteDialog(idea, $index)">
           Delete
         </button>
-        <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        <button ng-if="!canBuyIdea(idea) && !isModerator" type="button" class="btn btn-default"
+                ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
           Edit
         </button>
         <!-- buttons to submit / cancel form -->
@@ -50,7 +51,8 @@
           <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
             Save
           </button>
-          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting"
+                  ng-click="editableForm.$cancel()">
             Cancel
           </button>
         </span>
@@ -67,14 +69,16 @@
         <div class="media-body">
           <h5 class="media-heading">
             Comment #{{$index}} by - {{comment.owner.first_name}} <span am-time-ago="comment.created_at"></span>
-
           </h5>
 
           <p class="comment">{{comment.comment}}</p>
+
+          <div ng-if="isModerator" class="btn-group">
+            <button type="button" class="btn btn-danger" ng-click="showDeleteDialog(idea, $index)"> Delete</button>
+          </div>
         </div>
 
       </li>
-
       <li class="media well well-sm">
         <div class="media-left">
           <img src="images/Unknown.png" alt="User logo" width="64">
